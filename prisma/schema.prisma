@@ -1,0 +1,175 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+enum Role {
+  SUPER_ADMIN
+  EDITOR
+  MEDIA_MANAGER
+  VIEWER
+}
+
+enum Status {
+  DRAFT
+  PUBLISHED
+  ARCHIVED
+}
+
+enum MediaType {
+  IMAGE
+  DOCUMENT
+  VIDEO
+}
+
+model User {
+  id            String      @id @default(cuid())
+  name          String
+  email         String      @unique
+  passwordHash  String
+  role          Role        @default(EDITOR)
+  active        Boolean     @default(true)
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+  auditLogs     AuditLog[]
+  updatedPages  Page[]      @relation("pageUpdatedBy")
+  createdNews   News[]      @relation("newsCreatedBy")
+  uploadedMedia Media[]     @relation("mediaUploadedBy")
+}
+
+model Page {
+  id             String   @id @default(cuid())
+  slug           String   @unique
+  title          String
+  menuLabel      String
+  metaDescription String?
+  heroImage      String?
+  bodyHtml       String   @db.Text
+  status         Status   @default(DRAFT)
+  sortOrder      Int      @default(0)
+  updatedById    String?
+  updatedBy      User?    @relation("pageUpdatedBy", fields: [updatedById], references: [id], onDelete: SetNull)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+}
+
+model Media {
+  id              String      @id @default(cuid())
+  type            MediaType
+  title           String
+  caption         String?
+  filename        String?
+  storagePath     String?
+  mimeType        String?
+  sizeBytes       BigInt?
+  externalUrl     String?
+  category        String?
+  altText         String?
+  status          Status      @default(PUBLISHED)
+  uploadedById    String?
+  uploadedBy      User?       @relation("mediaUploadedBy", fields: [uploadedById], references: [id], onDelete: SetNull)
+  createdAt       DateTime    @default(now())
+  newsFeatured    News[]      @relation("newsFeatured")
+  publicationsDocuments Publication[] @relation("document")
+  publicationsCovers     Publication[] @relation("cover")
+  videoFiles      Video[]     @relation("videoFile")
+  videoThumbs     Video[]     @relation("videoThumb")
+  officerPhotos   Officer[]   @relation("officerPhoto")
+  rangePhotos     Range[]     @relation("rangePhoto")
+}
+
+model News {
+  id               String    @id @default(cuid())
+  title            String
+  slug             String    @unique
+  summary          String?
+  bodyHtml         String?   @db.Text
+  featuredImageId  String?
+  featuredImage    Media?    @relation("newsFeatured", fields: [featuredImageId], references: [id], onDelete: SetNull)
+  publishDate      DateTime?
+  status           Status    @default(DRAFT)
+  createdById      String?
+  createdBy        User?     @relation("newsCreatedBy", fields: [createdById], references: [id], onDelete: SetNull)
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
+}
+
+model Publication {
+  id               String    @id @default(cuid())
+  title            String
+  description      String?
+  category         String?
+  documentMediaId  String?
+  document         Media?    @relation("document", fields: [documentMediaId], references: [id], onDelete: SetNull)
+  coverMediaId     String?
+  cover            Media?    @relation("cover", fields: [coverMediaId], references: [id], onDelete: SetNull)
+  publishDate      DateTime?
+  status           Status    @default(DRAFT)
+  createdAt        DateTime  @default(now())
+}
+
+model Video {
+  id               String    @id @default(cuid())
+  title            String
+  description      String?
+  youtubeUrl       String?
+  videoMediaId     String?
+  videoMedia       Media?    @relation("videoFile", fields: [videoMediaId], references: [id], onDelete: SetNull)
+  thumbnailMediaId String?
+  thumbnail        Media?    @relation("videoThumb", fields: [thumbnailMediaId], references: [id], onDelete: SetNull)
+  category         String?
+  status           Status    @default(DRAFT)
+  createdAt        DateTime  @default(now())
+}
+
+model Officer {
+  id            String   @id @default(cuid())
+  name          String
+  designation   String
+  office        String?
+  mobile        String?
+  officePhone   String?
+  email         String?
+  photoMediaId  String?
+  photo         Media?   @relation("officerPhoto", fields: [photoMediaId], references: [id], onDelete: SetNull)
+  sortOrder     Int      @default(0)
+  status        Status   @default(PUBLISHED)
+  createdAt     DateTime @default(now())
+}
+
+model Range {
+  id            String   @id @default(cuid())
+  name          String
+  officerName   String?
+  mobile        String?
+  phone         String?
+  email         String?
+  description   String?
+  photoMediaId  String?
+  photo         Media?   @relation("rangePhoto", fields: [photoMediaId], references: [id], onDelete: SetNull)
+  sortOrder     Int      @default(0)
+  status        Status   @default(PUBLISHED)
+}
+
+model Setting {
+  key       String   @id
+  value     String?
+  updatedAt DateTime @updatedAt
+}
+
+model AuditLog {
+  id         String   @id @default(cuid())
+  userId     String?
+  user       User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
+  action     String
+  entityType String?
+  entityId   String?
+  ip         String?
+  userAgent  String?
+  details    Json?
+  createdAt  DateTime @default(now())
+}

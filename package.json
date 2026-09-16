@@ -1,0 +1,20 @@
+{
+  "name": "sundargarh-forest-wildlife-cms",
+  "private": true,
+  "workspaces": [
+    "server",
+    "client"
+  ],
+  "scripts": {
+    "dev": "concurrently \"npm --workspace server run dev\" \"npm --workspace client run dev\"",
+    "build": "npm run build:client",
+    "build:client": "npm --workspace client run build",
+    "start": "npm --workspace server run start",
+    "db:generate": "npm --workspace server run prisma:generate",
+    "db:migrate": "npm --workspace server run prisma:migrate",
+    "seed": "npm --workspace server run seed"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1"
+  }
+}

@@ -1,0 +1,31 @@
+services:
+  db:
+    image: postgres:17-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: sundargarh_forest_cms
+      POSTGRES_USER: cms
+      POSTGRES_PASSWORD: CHANGE_THIS_DATABASE_PASSWORD
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+  server:
+    build: ./server
+    restart: unless-stopped
+    environment:
+      DATABASE_URL: postgresql://cms:CHANGE_THIS_DATABASE_PASSWORD@db:5432/sundargarh_forest_cms
+      PORT: 4000
+      CLIENT_ORIGIN: http://localhost
+      SESSION_SECRET: CHANGE_THIS_TO_A_LONG_RANDOM_SECRET
+      NODE_ENV: production
+      UPLOAD_DIR: /app/uploads
+    depends_on: [db]
+    volumes:
+      - uploads:/app/uploads
+  client:
+    build: ./client
+    restart: unless-stopped
+    ports: ["80:80"]
+    depends_on: [server]
+volumes:
+  postgres_data:
+  uploads:

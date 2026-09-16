@@ -1,0 +1,121 @@
+/* =========================================================
+   Sundergarh Forest & Wildlife Division - About Us
+   Dedicated cinematic page stylesheet
+   ========================================================= */
+:root{
+  --about-deep:#032c1b;
+  --about-green:#075b32;
+  --about-lime:#b8df55;
+  --about-gold:#d1a84a;
+  --about-cream:#f4f7f1;
+  --about-ink:#17231d;
+  --about-muted:#66736b;
+  --about-line:#dfe8e1;
+  --about-white:#fff;
+  --about-shadow:0 18px 55px rgba(2,44,27,.12);
+}
+
+.about-page{background:var(--about-cream);color:var(--about-ink)}
+.about-page *{box-sizing:border-box}
+.about-container{width:min(1000px,100%);margin:auto}
+
+/* Cinematic hero */
+.about-cinema{
+  position:relative;min-height:680px;color:#fff;display:flex;align-items:center;
+  background:
+    linear-gradient(90deg,rgba(0,29,18,.94) 0%,rgba(0,48,29,.76) 43%,rgba(0,30,18,.24) 100%),
+    url('https://images.unsplash.com/photo-1511497584788-876760111969?auto=format&fit=crop&w=2200&q=88') center/cover;
+}
+.about-cinema:before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.05),rgba(0,0,0,.12) 55%,rgba(0,24,14,.9));pointer-events:none}
+.about-cinema:after{content:"";position:absolute;left:-8%;bottom:-150px;width:100%;height:260px;background:var(--about-cream);border-radius:50% 50% 0 0/35% 35% 0 0;transform:rotate(-1deg)}
+.about-cinema-content{position:relative;z-index:2;padding:95px 0 150px}
+.about-kicker{display:inline-flex;align-items:center;gap:10px;color:var(--about-lime);font-size:11px;font-weight:800;letter-spacing:2.5px;text-transform:uppercase}
+.about-kicker:before{content:"";width:38px;height:2px;background:var(--about-lime)}
+.about-cinema h1{max-width:850px;margin:18px 0 18px;font:700 clamp(48px,7vw,88px)/.96 Georgia,serif;letter-spacing:-3px;text-shadow:0 8px 30px #0007}
+.about-cinema h1 span{color:var(--about-lime);font-style:italic}
+.about-lead{max-width:650px;margin:0;color:#eaf3ed;font:italic 20px/1.65 Georgia,serif}
+.about-hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
+.about-btn{display:inline-flex;align-items:center;gap:9px;padding:12px 18px;border-radius:5px;background:var(--about-lime);color:#083c25;font-size:13px;font-weight:800;border:1px solid var(--about-lime);transition:.25s}
+.about-btn:hover{transform:translateY(-3px);box-shadow:0 10px 25px #0004}
+.about-btn.ghost{background:#ffffff12;color:#fff;border-color:#ffffff70;backdrop-filter:blur(4px)}
+.about-hero-note{position:absolute;right:0;bottom:185px;width:250px;padding:20px;border:1px solid #ffffff3b;border-radius:14px;background:#063b2485;backdrop-filter:blur(9px);box-shadow:0 15px 40px #0004}
+.about-hero-note strong{display:block;font:700 42px/1 Georgia,serif;color:var(--about-lime)}
+.about-hero-note span{display:block;margin-top:7px;font-size:11px;line-height:1.5;color:#dcebe1}
+
+/* Intro */
+.about-intro{position:relative;margin-top:-35px;z-index:5}
+.about-intro-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:24px;align-items:stretch}
+.about-story-card,.about-visual-card{border-radius:18px;overflow:hidden;background:#fff;box-shadow:var(--about-shadow);border:1px solid var(--about-line)}
+.about-story-card{padding:42px}
+.about-eyebrow{font-size:10px;letter-spacing:2px;text-transform:uppercase;font-weight:900;color:var(--about-green)}
+.about-story-card h2{margin:10px 0 16px;font:700 38px/1.1 Georgia,serif;color:var(--about-deep)}
+.about-story-card h2 span{color:var(--about-green)}
+.about-story-card p{font-size:14px;line-height:1.85;color:var(--about-muted);margin:0 0 15px}
+.about-dropcap:first-letter{float:left;font:700 58px/.8 Georgia,serif;color:var(--about-green);padding:6px 10px 0 0}
+.about-visual-card{position:relative;min-height:420px;background:url('https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=1400&q=88') center/cover}
+.about-visual-card:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 25%,rgba(2,44,27,.92))}
+.about-visual-copy{position:absolute;z-index:2;left:28px;right:28px;bottom:25px;color:#fff}
+.about-visual-copy h3{margin:0 0 7px;font:700 30px Georgia,serif}
+.about-visual-copy p{margin:0;color:#dcebe2;font-size:12px;line-height:1.6}
+
+/* Philosophy ribbon */
+.about-ribbon{margin:28px 0 0;background:var(--about-deep);color:#fff;border-radius:14px;padding:15px 20px;display:grid;grid-template-columns:repeat(4,1fr);gap:1px;box-shadow:var(--about-shadow)}
+.about-ribbon-item{padding:10px 18px;text-align:center;border-right:1px solid #ffffff20}
+.about-ribbon-item:last-child{border:0}
+.about-ribbon-item i{display:block;color:var(--about-lime);font-size:22px;margin-bottom:7px}
+.about-ribbon-item strong{font-size:12px}.about-ribbon-item span{display:block;color:#bfd2c6;font-size:10px;margin-top:3px}
+
+/* History */
+.about-section{padding:85px 0}
+.about-section.dark{background:var(--about-deep);color:#fff;position:relative}
+.about-section.dark:before{content:"";position:absolute;inset:0;opacity:.14;background-image:radial-gradient(#b8df55 1px,transparent 1px);background-size:28px 28px;pointer-events:none}
+.about-heading{position:relative;z-index:1;text-align:center;max-width:760px;margin:0 auto 48px}
+.about-heading .eyebrow{font-size:10px;letter-spacing:2.5px;color:var(--about-lime);font-weight:900;text-transform:uppercase}
+.about-heading h2{margin:9px 0 12px;font:700 clamp(34px,4vw,54px)/1.05 Georgia,serif}
+.about-heading p{margin:0;color:var(--about-muted);font-size:14px;line-height:1.7}
+.dark .about-heading p{color:#bdd0c5}
+
+.about-timeline{position:relative;max-width:1050px;margin:auto}
+.about-timeline:before{content:"";position:absolute;top:0;bottom:0;left:50%;width:2px;background:linear-gradient(var(--about-lime),#ffffff33,var(--about-lime));transform:translateX(-50%)}
+.about-time{position:relative;display:grid;grid-template-columns:1fr 80px 1fr;align-items:center;min-height:170px}
+.about-time:nth-child(even) .about-time-card:first-child{grid-column:3;grid-row:1}
+.about-time:nth-child(even) .about-time-card:last-child{grid-column:1;grid-row:1}
+.about-time-card{padding:24px;border:1px solid #ffffff18;border-radius:13px;background:#ffffff09;backdrop-filter:blur(5px)}
+.about-time-card h3{margin:0 0 7px;color:var(--about-lime);font:700 22px Georgia,serif}.about-time-card p{margin:0;color:#d2e1d8;font-size:12px;line-height:1.65}
+.about-time-dot{grid-column:2;grid-row:1;justify-self:center;width:46px;height:46px;border-radius:50%;display:grid;place-items:center;background:var(--about-lime);color:#063a24;border:6px solid #0a4930;box-shadow:0 0 0 1px #b8df5570;font-weight:900;font-size:11px;z-index:2}
+.about-time-empty{grid-column:1;grid-row:1}.about-time:nth-child(even) .about-time-empty{grid-column:3}
+
+/* Visual facts */
+.about-facts{background:#fff}
+.about-facts-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.about-fact{position:relative;min-height:245px;border-radius:15px;overflow:hidden;padding:28px;color:#fff;background-position:center;background-size:cover;box-shadow:var(--about-shadow)}
+.about-fact:before{content:"";position:absolute;inset:0;background:linear-gradient(135deg,rgba(3,44,27,.92),rgba(3,44,27,.35))}
+.about-fact>*{position:relative;z-index:1}.about-fact i{font-size:27px;color:var(--about-lime)}
+.about-fact strong{display:block;margin:32px 0 5px;font:700 26px Georgia,serif}.about-fact span{display:block;font-size:11px;line-height:1.55;color:#dbe9e0}
+
+/* Mandate */
+.about-mandate{display:grid;grid-template-columns:.8fr 1.2fr;gap:30px;align-items:center}
+.about-mandate-image{height:500px;border-radius:18px;background:url('https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=1400&q=88') center/cover;box-shadow:var(--about-shadow);position:relative;overflow:hidden}
+.about-mandate-image:after{content:"FORESTS • WILDLIFE • PEOPLE";position:absolute;bottom:24px;left:24px;color:#fff;font-size:10px;letter-spacing:2px;font-weight:900;background:#032c1bd9;padding:10px 13px;border-radius:5px}
+.about-mandate-copy h2{font:700 45px/1.08 Georgia,serif;color:var(--about-deep);margin:0 0 17px}.about-mandate-copy p{color:var(--about-muted);font-size:14px;line-height:1.8}
+.about-mandate-list{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:25px}
+.about-mandate-item{padding:16px;border:1px solid var(--about-line);background:#fff;border-radius:10px}.about-mandate-item i{color:var(--about-green);font-size:18px}.about-mandate-item strong{display:block;font-size:12px;margin-top:8px}.about-mandate-item span{display:block;font-size:10px;line-height:1.5;color:var(--about-muted);margin-top:4px}
+
+/* Quote */
+.about-quote{padding:85px 0;background:linear-gradient(110deg,#075b32,#032c1b);color:#fff;text-align:center;position:relative;overflow:hidden}
+.about-quote:before,.about-quote:after{content:"“";position:absolute;font:220px/1 Georgia,serif;color:#b8df5515}.about-quote:before{left:5%;top:5px}.about-quote:after{right:5%;bottom:-95px;transform:rotate(180deg)}
+.about-quote blockquote{position:relative;max-width:850px;margin:0 auto;font:italic 31px/1.45 Georgia,serif}.about-quote cite{display:block;margin-top:18px;color:#c7dbce;font-size:11px;font-style:normal;letter-spacing:1.5px;text-transform:uppercase}
+
+@media(max-width:900px){
+  .about-cinema{min-height:610px}.about-cinema-content{padding:75px 0 130px}.about-hero-note{display:none}
+  .about-intro-grid,.about-mandate{grid-template-columns:1fr}.about-visual-card{min-height:340px}.about-ribbon{grid-template-columns:1fr 1fr}
+  .about-timeline:before{left:23px}.about-time{grid-template-columns:46px 1fr;min-height:145px;gap:18px}.about-time-dot{grid-column:1;grid-row:1}.about-time-card{grid-column:2!important;grid-row:1!important}.about-time-empty{display:none}
+  .about-facts-grid{grid-template-columns:1fr 1fr}.about-mandate-image{height:380px}
+}
+@media(max-width:600px){
+  .about-cinema{min-height:570px}.about-cinema h1{letter-spacing:-1.5px}.about-lead{font-size:17px}.about-story-card{padding:28px}.about-story-card h2{font-size:31px}
+  .about-ribbon{grid-template-columns:1fr 1fr}.about-ribbon-item{padding:10px 8px}.about-ribbon-item strong{font-size:10px}.about-ribbon-item span{font-size:9px}
+  .about-section{padding:62px 0}.about-facts-grid,.about-mandate-list{grid-template-columns:1fr}.about-mandate-image{height:310px}.about-mandate-copy h2{font-size:36px}.about-quote blockquote{font-size:24px}.about-cinema:after{bottom:-175px}
+}
+
+@media(prefers-reduced-motion:reduce){.about-btn{transition:none}.about-page *{scroll-behavior:auto}}

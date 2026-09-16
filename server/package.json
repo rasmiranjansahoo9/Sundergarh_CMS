@@ -1,0 +1,26 @@
+{
+  "name": "sundargarh-cms-server",
+  "private": true,
+  "scripts": {
+    "dev": "tsx watch src/server.js",
+    "start": "node src/server.js",
+    "prisma:generate": "prisma --schema=../prisma/schema.prisma generate",
+    "prisma:migrate": "prisma --schema=../prisma/schema.prisma migrate dev",
+    "seed": "tsx src/seed.js"
+  },
+  "dependencies": {
+    "@prisma/client": "^6.16.2",
+    "argon2": "^0.41.1",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
+    "express-rate-limit": "^8.1.0",
+    "helmet": "^8.1.0",
+    "multer": "^2.0.2",
+    "zod": "^4.1.5"
+  },
+  "devDependencies": {
+    "prisma": "^6.16.2",
+    "tsx": "^4.19.1"
+  }
+}
